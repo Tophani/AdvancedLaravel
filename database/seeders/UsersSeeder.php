@@ -18,15 +18,15 @@ class Userseeder extends Seeder
     {
         //
         UserModel::factory(1)->create([
-            'name'=>"adamu",
-            'profile_pic'=>"ajajjk",
-            "address"=>"akpizone",
+            'name'=>"tessy",
+            // 'profile_pic'=>"posee",
+            "address"=>"GRA",
             "phone"=>8133087596,
-            "password"=>Hash::make("akpizone")
+            "password"=>Hash::make("Tophannni")
         ])->each(function ($user){
             PasswordModel::factory(1)->create([
-                'platform'=>"dodge",
-                'password'=>"ajajjk",
+                'platform'=>"facebook",
+                'password'=>"tesssy",
                 'user_id'=>$user->id,
 
             ]);

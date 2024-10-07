@@ -52,29 +52,42 @@ class Operation extends Command
     }
 
     private function selectOperation()
-    {
-        $user_Id = $this->ask('Enter the user ID to view users');
-        $user = UserModel::with('userPassword')->where('id',$user_Id)->first();
+{
+    $user_Id = $this->ask('Enter the user ID to view users');
+    $user = UserModel::with('userPassword')->where('id', $user_Id)->first();
 
-        if (!$user)return $this->error(string:'User not found.');
+    if (!$user)
+        return $this->error('User not found.');
 
-            $this->info("Displaying all users:");
-            $this->info("UserId: $user->id");
-            $this->info("Name: $user->name");
-            $this->info("Address:$user->address");
-            $this->info("Phone No: $user->phone");
-            $this->info("Password: $user->password");
+    $this->info("Displaying all users:");
+    $this->info("UserId: $user->id");
+    $this->info("Name: $user->name");
+    $this->info("Address: $user->address");
+    $this->info("Phone No: $user->phone");
+    $this->info("Password: $user->password");
 
+    // if ($user->userPassword && count($user->userPassword) > 0) {
+    //     $this->info("\nPasswords:");
+    //     foreach ($user->userPassword as $password) {
+    //         $this->info("Platform: {$password->platform} \nPassword: {$password->password}");
+    //     }
+    // } else {
+    //     $this->info("Passwords: Not available");
+    // }
 
-            // if ($user->userPassword &&count($user->userPassword)>0)  {
-            //     $this->info("\nPasswords:");
-            //     foreach ($user->userPassword as $password) {
-            //         $this->info("platform:: {$password->platform} \nPassword::$password->password");
-            //     }
-            // } else {
-            //     // $this->info(string:"Not available");
-            // }
+    
+    if ($user->userPassword && count($user->userPassword) > 0) {
+        $this->info("\nPasswords:");
+        foreach ($user->userPassword as $password) {
+            $this->info("Platform: {$password->platform} \nPassword: {$password->password}");
+        }
+    } else {
+        $this->info("Passwords: Not available");
     }
+
+
+}
+
 
     private function updateOperation()
     {

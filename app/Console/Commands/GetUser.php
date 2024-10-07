@@ -28,7 +28,7 @@ class GetUser extends Command
     {
         $user_Id = $this->argument('user_Id');
 
-        $user = UserModel::with('userPassword')->where('id',$user_Id)->get();
+        $user = UserModel::with('userPassword')->where('id',$user_Id)->first();
         //
         $this->info($user);
 

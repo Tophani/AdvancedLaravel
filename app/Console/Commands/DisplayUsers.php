@@ -24,9 +24,9 @@ class DisplayUsers extends Command
         $users = UserModel::with('userPassword')->paginate(2);
 
         foreach ($users as $user) {
-            $this->info("User: {$user->name}");
+            $this->info("User: {$user->name} {ID: {$user->id}}");
             foreach ($user->userPassword as $password) {
-                $this->line(" - Platform: {$password->platform}, - Password: {$password->password}");
+                $this->line(" - Password ID: {$password->id}, Platform: {$password->platform}, - Password: {$password->password}");
             }
         }
 
